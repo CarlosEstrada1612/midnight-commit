@@ -1,63 +1,84 @@
-# Astro Starter Kit: Blog
+# 🌙 Midnight Commit 💻
 
-```sh
-npm create astro@latest -- --template blog
-```
+> A retro-tech personal blog inspired by the early web, programming, hardware, and the late-night hacker aesthetic. 🌐✨
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🖥️ About
 
-Features:
+**Midnight Commit** is my personal space on the web where I write about:
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+* 💻 Programming
+* 🔧 Hardware
+* 🖥️ Computers & technology
+* 🕹️ Retro computing
+* 🌐 The old web
+* 🎨 Digital aesthetics
+* 🌙 Random things I discover at 2 AM
 
-## 🚀 Project Structure
+The site takes inspiration from the **early 2000s web**, personal websites, **Neocities**, pixel art, classic computer interfaces, and that feeling of browsing the internet before everything looked the same. 📟💾✨
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🛠️ Built With
+
+* 🚀 [Astro](https://astro.build/)
+* 🧱 HTML
+* 🎨 CSS
+* ⚡ JavaScript
+
+## 📂 Project
 
 ```text
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+🌙 midnight-commit/
+├── 📁 src/
+│   ├── 🧩 components/
+│   ├── 📝 content/
+│   ├── 📐 layouts/
+│   ├── 📄 pages/
+│   └── 🎨 styles/
+│
+├── 📁 public/
+├── 📦 package.json
+└── ⚙️ astro.config.mjs
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🚧 Status
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+**🟡 Currently under development**
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+The site is still being built, so expect:
 
-Any static assets, like images, can be placed in the `public/` directory.
+* 🧪 Experimental features
+* 🎨 Design changes
+* 🐛 Bugs
+* ✨ New pages
+* 📝 New blog posts
+* 🎵 Maybe some music
 
-## 🧞 Commands
+## 🗺️ Roadmap
 
-All commands are run from the root of the project, from a terminal:
+* [ ] 🏠 Finish the home page
+* [ ] 📝 Build the blog
+* [ ] 🎵 Add a music player
+* [ ] 🪟 Add more floating windows
+* [ ] 📸 Create the Pics section
+* [ ] 👤 Finish the About Me page
+* [ ] 📖 Add a Guestbook
+* [ ] 🌐 Deploy the website
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 🌌 Philosophy
 
-## 👀 Want to learn more?
+> **The web should feel personal again.**
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Not everything needs to be optimized, minimal, or designed to look like a corporate SaaS dashboard.
 
-## Credit
+Sometimes a website can just be a little corner of the internet that feels like **yours**. 💾🖱️🌙
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+## 📜 License
+
+This is primarily a personal website. Feel free to explore the code, learn from it, and take inspiration from it. 🫡
+
+---
+
+🌙 **Made during the late hours.**
+
+💻 **Powered by code, caffeine, and questionable design decisions.**
+
+`git commit -m "probably works"` 🤞
