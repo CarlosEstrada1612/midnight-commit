@@ -70,3 +70,7 @@
   box-sizing: border-box;
   background-color: var(--color-bg);
 }
+a:hover{
+  text-decoration: underline;
+  color: var(--color-accent-hover);
+}
