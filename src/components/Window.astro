@@ -33,6 +33,15 @@ const { title } = Astro.props;
         const maximizeButton = ventana.querySelector('.btn-maximize');
         if (maximizeButton) {
             maximizeButton.addEventListener('click', () => {
+                if(ventana.classList.contains('maximized')) {
+                    (ventana as HTMLElement).style.left = (ventana as HTMLElement).dataset.prevLeft || '';
+                    (ventana as HTMLElement).style.top = (ventana as HTMLElement).dataset.prevTop || '';
+                } else {
+                    (ventana as HTMLElement).dataset.prevLeft = (ventana as HTMLElement).style.left;
+                    (ventana as HTMLElement).dataset.prevTop  = (ventana as HTMLElement).style.top;
+                    (ventana as HTMLElement).style.left = '';
+                    (ventana as HTMLElement).style.top  = '';
+                }
                 ventana.classList.toggle('maximized');
             });
         }
@@ -40,6 +49,29 @@ const { title } = Astro.props;
         if (closeButton) {
             closeButton.addEventListener('click', () => {
                 ventana.classList.add('hidden');
+            });
+        }
+        const titleBar = ventana.querySelector('.window-titlebar');
+        if(titleBar) {
+            titleBar.addEventListener('mousedown', (e) => {
+                if(ventana.classList.contains('maximized')) return;
+
+                const offsetX = (e as MouseEvent).clientX - (ventana as HTMLElement).offsetLeft;
+                const offsetY = (e as MouseEvent).clientY - (ventana as HTMLElement).offsetTop;
+
+                const HandleMouseMove = (e: MouseEvent) => {
+                    (ventana as HTMLElement).style.left = e.clientX - offsetX + 'px';
+                    (ventana as HTMLElement).style.top  = e.clientY - offsetY + 'px';
+                };
+
+                document.addEventListener('mousemove', HandleMouseMove);
+
+                const HandleMouseUp = () => {
+                    document.removeEventListener('mousemove', HandleMouseMove);
+                    document.removeEventListener('mouseup', HandleMouseUp);
+                };
+
+                document.addEventListener('mouseup', HandleMouseUp);
             });
         }
     });
