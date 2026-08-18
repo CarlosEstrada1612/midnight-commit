@@ -15,8 +15,11 @@
 }
 .window {
     position: absolute;
-    border: 5px outset var(--color-border);
+    border: 4px outset var(--color-bg);
+    outline: 2px solid var(--color-border);
     background: var(--color-bg);
+    font-family: var(--font-mono);
+    font-size: 75%;
 }
 .window-titlebar {
     display: flex;
@@ -56,4 +59,34 @@
     position: relative;
     width: 100%;
     height: 100%;
+}
+.about-window {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    max-width: 330px;
+}
+.about-top {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+.about-top img {
+    width: 160px;
+    image-rendering: pixelated;
+    flex-shrink: 0;
+}
+.about-intro p {
+    margin: 0 0 10px 0;
+    max-width: 250px;
+}
+.about-name {
+    color: var(--color-accent);
+}
+.about-link {
+    color: var(--color-accent-hover);
+    text-decoration: none;
+}
+.about-link:hover {
+    text-decoration: underline;
 }

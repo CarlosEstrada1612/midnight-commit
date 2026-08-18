@@ -13,6 +13,7 @@
  	--color-bg: #e2dad2 /* el color de fondo principal */;
   	--color-text: black /* el color del texto */;
  	--color-accent: #23195b /* el acento principal */;
+	--color-accent-hover: #71237a /* el acento al pasar el mouse */;
   	--color-border: #000000 /* el color del borde */;
 	--color-bg-secondary: #f5f5f5 /* el color de fondo secundario */;
   /* etc... */

@@ -6,7 +6,17 @@ import Window from '../components/Window.astro';
 <Layout title="Midnight Commit">
   <div class="windows-container">
   <Window title="about me">
-    <p>Hola, soy Carlos.</p>
+    <div class="about-window">
+      <div class="about-top">
+        <img src="/images/site/about-avatar.png" alt="avatar"/>
+        <div class="about-intro">
+          <p>Hey! I'm <span class="about-name">Carlos</span>.</p>
+          <p>Computer Science enthusiast who loves retro games, old websites & city pop.</p>
+        </div>
+      </div>
+      <p>PUCP Student, Linux user, vintage web developer, peru es clave</p>
+      <a class="about-link" href="/about"> &gt more about me_</a>
+    </div>
   </Window>
   </div>
 </Layout>
