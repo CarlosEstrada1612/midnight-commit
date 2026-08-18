@@ -1,0 +1,72 @@
+.navbar {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 10px 0;
+  background-color: var(--color-bg);
+  border-bottom: 2px solid var(--color-accent);
+  border-top: 2px solid var(--color-accent);
+}
+.navbar-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+.navbar-links a {
+  text-transform: uppercase;
+  padding: 0 45px;
+  font-family: VT323, bold;
+  color: var(--color-accent);
+  text-decoration: none;
+  font-size:26px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  line-height: 1;
+}
+.navbar-links img {
+    image-rendering: pixelated;
+    width: 32px;
+}
+.navbar-search {
+  margin-left: auto;
+  margin-right: 25px;
+}
+.navbar-search input {
+  font-family: Cascadia Code, monospace;
+  font-size: 1rem;
+  padding: 6px 6px;
+  border: 2px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+  outline: none;
+}
+.navbar-search button {
+  font-family: VT323, monospace;
+  font-size: 1.5rem;
+  padding: 3px 8px;
+  border: 3px outset var(--color-bg);
+  background: var(--color-accent);
+  color: var(--color-bg-secondary);
+  cursor: pointer;
+}
+.navbar-search form {
+  display: flex;
+  gap: 8px;
+}
+.navbar-search button:hover {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+.statusbar {
+  width: 100%;
+  font-family: Cascadia Code, monospace;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  border-bottom: 2px solid var(--color-border);
+  box-sizing: border-box;
+  background-color: var(--color-bg);
+}

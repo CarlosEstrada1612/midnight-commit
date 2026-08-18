@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div class="window">
+  <div class="window-titlebar">
+    <span class="window-title">{title}</span>
+    <div class="window-buttons">
+      <button class="btn-minimize">_</button>
+      <button class="btn-maximize">□</button>
+      <button class="btn-close">✕</button>
+    </div>
+  </div>
+
+  <div class="window-content">
+    <slot />
+  </div>
+</div>
+
+<script>
+    const ventanas = document.querySelectorAll('.window');
+    ventanas.forEach((ventana) => {
+        const minimizeButton = ventana.querySelector('.btn-minimize');
+        if (minimizeButton) {
+            minimizeButton.addEventListener('click', () => {
+                ventana.classList.toggle('minimized');
+            });
+        }
+        const maximizeButton = ventana.querySelector('.btn-maximize');
+        if (maximizeButton) {
+            maximizeButton.addEventListener('click', () => {
+                ventana.classList.toggle('maximized');
+            });
+        }
+        const closeButton = ventana.querySelector('.btn-close');
+        if (closeButton) {
+            closeButton.addEventListener('click', () => {
+                ventana.classList.add('hidden');
+            });
+        }
+    });
+
+</script>

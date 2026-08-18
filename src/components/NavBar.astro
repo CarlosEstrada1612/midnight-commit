@@ -1,0 +1,42 @@
+---
+import { SITE_DESCRIPTION } from '../consts';
+---
+
+<nav class="navbar">
+  <div class="navbar-links">
+     <ul>
+      <li><a href="/">
+        <img src="/images/site/icon-home.png" alt=""/>
+        Home
+      </a></li>
+      <li><a href="/blog">
+        <img src="/images/site/icon-blog.png" alt=""/>
+        Blog
+      </a></li>
+      <li><a href="/pics">
+        <img src="/images/site/icon-pics.png" alt=""/>
+        Pics
+      </a></li>
+      <li><a href="/about">
+        <img src="/images/site/icon-about.png" alt=""/>
+        About
+      </a></li>
+      <li><a href="/guestbook">
+        <img src="/images/site/icon-guestbook.png" alt=""/>
+        Guestbook
+      </a></li>
+    </ul>
+  </div>
+
+  <div class="navbar-search">
+     <form>
+        <input type="text" placeholder="Search..." />
+        <button type="submit">GO!</button>
+     </form>
+  </div>
+</nav>
+
+<div class="statusbar">
+  <span>{SITE_DESCRIPTION}</span>
+  <span>15/08/2026</span>
+</div>
