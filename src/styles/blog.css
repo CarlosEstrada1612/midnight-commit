@@ -1,0 +1,83 @@
+/* Layout 3 columnas */
+.blog-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  gap: 8px;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: start;
+}
+/* Header del blog */
+.blog-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 8px;
+  border: 2px solid var(--color-border);
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+}
+/* Cada entrada del post */
+.post-entry {
+  display: flex;
+  gap: 12px;
+  border: 2px solid var(--color-border);
+  padding: 10px;
+  margin-bottom: 6px;
+}
+/* Bloque de fecha */
+.post-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 44px;
+  border-right: 2px solid var(--color-border);
+  padding-right: 10px;
+  text-align: center;
+  line-height: 1;
+  gap: 2px;
+}
+.post-day {
+  font-size: 1.8rem;
+  font-family: var(--font-display);
+  color: var(--color-accent);
+  line-height: 1;
+}
+.post-month,
+.post-year {
+  font-size: 0.7rem;
+}
+/* Cuerpo del post */
+.post-body {
+  flex: 1;
+}
+.post-category {
+  color: var(--color-accent);
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+.post-readtime {
+  font-size: 0.75rem;
+}
+.post-title {
+  font-size: 1.05rem;
+  margin: 4px 0;
+  line-height: 1.2;
+}
+.post-title a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+.post-title a:hover {
+  color: var(--color-accent);
+}
+.post-description {
+  font-size: 0.82rem;
+  margin: 0 0 6px 0;
+}
+.post-readmore {
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  text-decoration: none;
+}

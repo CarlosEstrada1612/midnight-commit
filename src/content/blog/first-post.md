@@ -1,16 +1,26 @@
 ---
-title: 'First post'
-description: 'Lorem ipsum dolor sit amet'
-pubDate: 'Jul 08 2022'
-heroImage: '../../assets/blog-placeholder-3.jpg'
+title: 'Hello bros'
+description: 'I love my career'
+pubDate: 2026-08-24
+category: "retro"
+minRead: 5
+draft: false
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+Hi! This is a project that I'm really enjoying because I feel like I'm learning so many new things about web development, and I absolutely love it. You can meet me in about me section, but if you don't want to go to that section, no problem. I'm Carlos, a computer engineering student who very recently fell completely in love with this field. 😁
 
-Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc. Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra massa massa ultricies mi.
+But before my great explanation about how that happened, I need to tell the complete story. When I was in primary school, I started to have some kind of atraccion of how the computer works. Over the time I've learned some things about hardware and software on my own. For example I learned how to install an operating system, or how to assemble a computer. Back then, I was really proud of myself, and all my classmates saw me as some kind of future hacker because I managed to hack my video game consoles and get all the games I wanted for free.
 
-Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
+But also, my father career attract me a lot, because I watched some tutorials in youtube to make some little electronic projetcs. When I was at the last year of high school, it was very difficult for me to chose between computer and electronic. After lots of vocational tests, web investigations and some youtube videos, finally I made a desicion, I wanted to study computer engineering because probably I will earn more money. 🤑 (One of the best decision in my life)
 
-Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id cursus metus aliquam eleifend mi.
+When I entered to the best peruvian university of peru (PUCP obviusly), I love the university at the first time and I was very excited for my studies, but I hated the structure of some things. The main problem for me was the large quantity of useless courses that are obligatory for each student. It's so stressfull, I mean, Why the fuck it's necessary for me to take a chemistry course? XD. But well, after a lot of all-nighters, lots of coffee and intense study sessions, I could beat all the physics courses let's go. 🗿
 
-Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
+After surviving all those physics courses, I finally got to take Programming 1. And honestly, that's when something changed. I fell in love with the logic behind programming and the way data can be organized and manipulated to solve problems.
+
+Of course, falling in love with programming didn't magically make me good at it... I still failed the course. XD
+
+But my professor, Guanira, really motivated me to keep learning. Because of that, I started researching on my own and learning about some really cool things outside the courses. I began experimenting, building little projects, and getting more curious about how things actually work behind the scenes.
+
+And recently, I even won a hackathon with a friend. 👀
+
+But that's a story for another commit.

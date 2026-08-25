@@ -6,6 +6,7 @@
 @import './navbar.css';
 @import './header.css';
 @import './windows.css';
+@import './blog.css';
 
 :root {
  	--font-display: 'VT323', monospace;
