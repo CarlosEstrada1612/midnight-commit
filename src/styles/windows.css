@@ -79,6 +79,7 @@
 }
 .about-top img {
     width: 160px;
+    height: 165px;
     image-rendering: pixelated;
     flex-shrink: 0;
 }

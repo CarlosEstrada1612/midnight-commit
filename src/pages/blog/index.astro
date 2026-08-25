@@ -13,12 +13,15 @@ const posts = allPosts.sort(
 
     <!-- SIDEBAR IZQUIERDO -->
     <aside class="blog-sidebar-left">
-      <!-- aquí van las ventanas del sidebar, las hacemos después -->
+      <div class="panel"> Avatar y Bio </div>
+      <div class="panel"> Folders (Categorías) </div>
+      <div class="panel"> Calendario </div>
+      <div class="panel"> Contador de visitas </div>
     </aside>
 
     <!-- CONTENIDO CENTRAL -->
     <main class="blog-main">
-
+      <img src="/src/assets/gifs/5CP7LF6CKD7WQH7ABZKHZJPAY72FJHLF.gif" alt="Blog Header" class="blog-header-image" />
       <div class="blog-header">
         <span>blog / all entries</span>
         <span>{posts.length} posts</span>
@@ -27,10 +30,10 @@ const posts = allPosts.sort(
       {posts.map((post) => (
         <article class="post-entry">
           <div class="post-date">
-            <span class="post-day">{post.data.pubDate.getDate()}</span>
             <span class="post-month">
               {post.data.pubDate.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()}
             </span>
+            <span class="post-day">{post.data.pubDate.getDate()}</span>
             <span class="post-year">{post.data.pubDate.getFullYear()}</span>
           </div>
 
@@ -50,8 +53,22 @@ const posts = allPosts.sort(
 
     <!-- SIDEBAR DERECHO -->
     <aside class="blog-sidebar-right">
-      <!-- aquí van las ventanas del sidebar, las hacemos después -->
+      <div class="panel"> Chat Room </div>
+      <div class="panel"> Recent Posts </div>
+      <div class="panel"> Mapa / Clima de Lima </div>
     </aside>
 
   </div>
 </Layout>
+<script>
+
+  const today=new Date();
+  today.getFullYear();
+  today.getMonth();
+  today.getDate();
+
+
+
+
+
+</script>
