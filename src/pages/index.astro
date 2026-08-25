@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/layout.astro';
 import Window from '../components/Window.astro';
+import { Image } from 'astro:assets';
+import avatarImg from '../assets/site/about-avatar.png';
 ---
 
 <Layout title="Midnight Commit">
@@ -8,7 +10,7 @@ import Window from '../components/Window.astro';
   <Window title="about me">
     <div class="about-window">
       <div class="about-top">
-        <img src="/images/site/about-avatar.png" alt="avatar"/>
+        <Image src={avatarImg} alt="avatar" />
         <div class="about-intro">
           <p>Hey! I'm <span class="about-name">Carlos</span>.</p>
           <p>Computer Science enthusiast who loves retro games, old websites & city pop.</p>

@@ -1,11 +1,14 @@
 ---
+import { Image } from 'astro:assets';
 import { SITE_TITLE } from '../consts';
+import logoImg from '../assets/site/logo.png';
+import headerImg from '../assets/site/header-img.png';
 ---
 
 <header class="site-header">
   <div class="header-logo">
     <a href="/">
-      <img src="/images/site/logo.png" alt={SITE_TITLE} />
+      <Image src={logoImg} alt={SITE_TITLE} />
     </a>
   </div>
 
@@ -15,6 +18,6 @@ import { SITE_TITLE } from '../consts';
   </div>
 
   <div class="header-image">
-    <img src="/images/site/header-img.png" alt="City Pop" />
+    <Image src={headerImg} alt="City Pop" />
   </div>
 </header>

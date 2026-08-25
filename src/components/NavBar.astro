@@ -1,28 +1,34 @@
 ---
+import { Image } from 'astro:assets';
 import { SITE_DESCRIPTION } from '../consts';
+import iconHome from '../assets/icons/icon-home.png';
+import iconBlog from '../assets/icons/icon-blog.png';
+import iconPics from '../assets/icons/icon-pics.png';
+import iconAbout from '../assets/icons/icon-about.png';
+import iconGuestbook from '../assets/icons/icon-guestbook.png';
 ---
 
 <nav class="navbar">
   <div class="navbar-links">
      <ul>
       <li><a href="/">
-        <img src="/images/site/icon-home.png" alt=""/>
+        <Image src={iconHome} alt="" />
         Home
       </a></li>
       <li><a href="/blog">
-        <img src="/images/site/icon-blog.png" alt=""/>
+        <Image src={iconBlog} alt="" />
         Blog
       </a></li>
       <li><a href="/pics">
-        <img src="/images/site/icon-pics.png" alt=""/>
+        <Image src={iconPics} alt="" />
         Pics
       </a></li>
       <li><a href="/about">
-        <img src="/images/site/icon-about.png" alt=""/>
+        <Image src={iconAbout} alt="" />
         About
       </a></li>
       <li><a href="/guestbook">
-        <img src="/images/site/icon-guestbook.png" alt=""/>
+        <Image src={iconGuestbook} alt="" />
         Guestbook
       </a></li>
     </ul>
