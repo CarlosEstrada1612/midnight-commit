@@ -63,12 +63,35 @@ const posts = allPosts.sort(
 <script>
 
   const today=new Date();
-  today.getFullYear();
-  today.getMonth();
-  today.getDate();
+  const currentYear = today.getFullYear();
+  const currentMonth = today.getMonth();
+  const currentDay = today.getDate();
 
+  let month = new Date().getMonth();
+  let year = new Date().getFullYear();
 
+  function generateCalendar(month: number, year: number) {
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDate = new Date(year, month + 1, 0).getDate();
+    const calendarDays = [];
 
+    for (let i = 0; i < firstDay; i++) {
+      calendarDays.push('');
+    }
+
+    for (let day = 1; day <= lastDate; day++) {
+      calendarDays.push(day);
+    }
+
+    const grid = document.getElementById('calendar-grid');
+    if (!grid) {
+      return calendarDays;
+    }
+
+    grid.innerHTML = '';  // limpia el grid antes de dibujar
+
+    return calendarDays;
+  }
 
 
 </script>
