@@ -97,3 +97,25 @@
 .about-link:hover {
     text-decoration: underline;
 }
+.system-window {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 340px;
+    height: 170px;
+}
+.system-parts p {
+    margin: 0 0 10px 0;
+    max-width: 250px;
+}
+.system-top {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: flex-start;
+}
+.system-top img {
+    width: 160px;
+    height: 165px;
+    flex-shrink: 0;
+}

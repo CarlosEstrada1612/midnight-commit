@@ -11,14 +11,11 @@
 }
 /* Header del blog */
 .blog-header {
-  font-family: var(--font-mono);
-  text-transform: uppercase;
   background-color: var(--color-bg);
   display: flex;
   justify-content: space-between;
-  padding: 10px 8px;
+  padding: 0 0;
   border: 4px outset var(--color-accent);
-  margin-bottom: 6px;
   font-size: 1rem;
 }
 /* Cada entrada del post */
@@ -102,5 +99,5 @@
 }
 .blog-header-image {
   width: 100%;
-  height: 55px;
+  height: auto;
 }
