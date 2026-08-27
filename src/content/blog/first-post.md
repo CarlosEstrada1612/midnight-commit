@@ -1,10 +1,11 @@
 ---
 title: 'Hello bros'
-description: 'I love my career'
+description: 'Hi! I hope you like my website. I spent many hours doing it, and I really enjoy the process. In this post I talked about how I am happy with me career, read it :)'
 pubDate: 2026-08-24
 category: "retro"
 minRead: 5
 draft: false
+heroImage: '../../assets/posts/first-post.jpg'
 ---
 
 Hi! This is a project that I'm really enjoying because I feel like I'm learning so many new things about web development, and I absolutely love it. You can meet me in about me section, but if you don't want to go to that section, no problem. I'm Carlos, a computer engineering student who very recently fell completely in love with this field. 😁

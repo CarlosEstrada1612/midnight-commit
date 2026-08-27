@@ -4,40 +4,44 @@ import Window from '../components/Window.astro';
 import { Image } from 'astro:assets';
 import avatarImg from '../assets/gifs/SH43HVSNNR5LCLWDEF6OICFL57AKIQMN.gif';
 import computerImg from '../assets/gifs/4TVNIZNSYD44M7OOOJ7DPQDA5K2TB46S.gif';
+import LatestCommit from '../components/LatestCommit.astro';
 ---
 
 <Layout title="Midnight Commit">
   <div class="windows-container">
-  <Window title="about me">
-    <div class="about-window">
-      <div class="about-top">
-        <Image src={avatarImg} alt="avatar" />
-        <div class="about-intro">
-          <p>Hey! I'm <span class="about-name">Carlos</span>.</p>
-          <p>Computer Science enthusiast who loves retro games, old websites & city pop.</p>
+    <Window title="about me">
+      <div class="about-window">
+        <div class="about-top">
+          <Image src={avatarImg} alt="avatar" />
+          <div class="about-intro">
+            <p>Hey! I'm <span class="about-name">Carlos</span>.</p>
+            <p>Computer Science enthusiast who loves retro games, old websites & city pop.</p>
+          </div>
+        </div>
+        <p>PUCP Student, Linux user, vintage web developer, peru es clave</p>
+        <a class="about-link" href="/about"> &gt more about me_</a>
+      </div>
+    </Window>
+    <Window title='my system'>
+      <div class="system-window">
+        <div class="system-top">
+          <Image src={computerImg} alt="computer"/>
+          <div class="system-parts">
+              <p>OS: Windows 10 LTSC</p>
+              <p>OS1: Linux Mint</p>
+              <p>CPU: Intel i7 4790k</p>
+              <p>RAM: 12GB DDR3</p>
+              <p>GPU: RX 590 GME</p>
+            </div>
         </div>
       </div>
-      <p>PUCP Student, Linux user, vintage web developer, peru es clave</p>
-      <a class="about-link" href="/about"> &gt more about me_</a>
-    </div>
-  </Window>
-  <Window title='my system'>
-    <div class="system-window">
-      <div class="system-top">
-        <Image src={computerImg} alt="computer"/>
-        <div class="system-parts">
-            <p>OS: Windows 10 LTSC</p>
-            <p>OS1: Linux Mint</p>
-            <p>CPU: Intel i7 4790k</p>
-            <p>RAM: 12GB DDR3</p>
-            <p>GPU: RX 590 GME</p>
-          </div>
-      </div>
-    </div>
-    <img src="src/assets/gifs/win98_891.gif"/>
-    <img src="src/assets/gifs/n64_com_now.gif"/>
-    <img src="src/assets/gifs/thedigitalme.gif"/>
-    <img src="src/assets/gifs/wii_button.gif"/>
-  </Window>
+      <img src="src/assets/gifs/win98_891.gif"/>
+      <img src="src/assets/gifs/n64_com_now.gif"/>
+      <img src="src/assets/gifs/thedigitalme.gif"/>
+      <img src="src/assets/gifs/wii_button.gif"/>
+    </Window>
+    <Window title="latest commit">
+      <LatestCommit />
+    </Window>
   </div>
 </Layout>
