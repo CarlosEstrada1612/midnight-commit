@@ -1,12 +1,14 @@
 ---
 interface Props {
-  title: string;
+    title: string;
+    isStatic?: boolean;
+    id?: string;
 }
 
-const { title } = Astro.props;
+const { title, isStatic = false, id } = Astro.props;
 ---
 
-<div class="window">
+<div class:list={['window', { 'window--static': isStatic }]} id={id}>
   <div class="window-titlebar">
     <span class="window-title">{title}</span>
     <div class="window-buttons">

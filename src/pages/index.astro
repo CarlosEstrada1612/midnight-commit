@@ -9,7 +9,7 @@ import LatestCommit from '../components/LatestCommit.astro';
 
 <Layout title="Midnight Commit">
   <div class="windows-container">
-    <Window title="about me">
+    <Window title="about me" id="win-about">
       <div class="about-window">
         <div class="about-top">
           <Image src={avatarImg} alt="avatar" />
@@ -22,7 +22,7 @@ import LatestCommit from '../components/LatestCommit.astro';
         <a class="about-link" href="/about"> &gt more about me_</a>
       </div>
     </Window>
-    <Window title='my system'>
+    <Window title="my system" id="win-system">
       <div class="system-window">
         <div class="system-top">
           <Image src={computerImg} alt="computer"/>
@@ -40,7 +40,7 @@ import LatestCommit from '../components/LatestCommit.astro';
       <img src="src/assets/gifs/thedigitalme.gif"/>
       <img src="src/assets/gifs/wii_button.gif"/>
     </Window>
-    <Window title="latest commit">
+    <Window title="latest commit" id="win-latest">
       <LatestCommit />
     </Window>
   </div>
