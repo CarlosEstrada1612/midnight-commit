@@ -1,7 +1,7 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "src/**/*"],
-  "exclude": ["dist", "src/content/blog/using-mdx.mdx"],
+  "exclude": ["dist"],
   "compilerOptions": {
     "strictNullChecks": true
   }
