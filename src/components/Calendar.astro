@@ -1,0 +1,64 @@
+---
+
+
+---
+
+<div class="calendar-widget">
+  <div class="calendar-header">
+    <button id="cal-prev">&lt;</button>
+    <span id="cal-month-year"></span>
+    <button id="cal-next">&gt;</button>
+  </div>
+  <div class="calendar-weekdays">
+    <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+  </div>
+  <div id="calendar-grid" class="calendar-days">
+    <!-- Aquí tu JavaScript insertará los días -->
+  </div>
+</div>
+
+<script>
+
+  const today=new Date();
+  const currentYear = today.getFullYear();
+  const currentMonth = today.getMonth();
+  const currentDay = today.getDate();
+
+  let month = new Date().getMonth();
+  let year = new Date().getFullYear();
+
+  function generateCalendar(month: number, year: number) {
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDate = new Date(year, month + 1, 0).getDate();
+    const calendarDays = [];
+
+    for (let i = 0; i < firstDay; i++) {
+      calendarDays.push('');
+    }
+
+    for (let day = 1; day <= lastDate; day++) {
+      calendarDays.push(day);
+    }
+
+    const grid = document.getElementById('calendar-grid');
+    if (!grid) {
+      return;
+    }
+
+    grid.innerHTML = '';  // limpia el grid antes de dibujar
+    
+    calendarDays.forEach((day) => {
+        const celda = document.createElement('span');
+        celda.textContent = day.toString();
+        // Si es el día de hoy, le agregamos una clase especial
+        if (day === currentDay && month === currentMonth && year === currentYear) {
+            celda.classList.add('cal-today');
+        }
+      grid.appendChild(celda);
+    });
+
+    return calendarDays;
+  }
+  generateCalendar(month, year);
+
+</script>

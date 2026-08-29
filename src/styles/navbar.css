@@ -19,7 +19,7 @@
   font-family: VT323, bold;
   color: var(--color-accent);
   text-decoration: none;
-  font-size:26px;
+  font-size: 26px;
   display: flex;
   align-items: center;
   gap: 4px;

@@ -1,6 +1,7 @@
 /* Layout 3 columnas */
 .blog-layout {
   background-image: url('/src/assets/site/blog-background.jpg');
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 350px 1fr 350px;
   gap: 8px;
