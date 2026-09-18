@@ -19,18 +19,6 @@
 /* ==========================================================================
    MAIN PICS WINDOW
    ========================================================================== */
-#pics-main {
-  min-width: 0;
-}
-#pics-main .window-content {
-  padding: 16px;
-}
-#pics-main .window-title {
-  font-weight: bold;
-}
-#pics-main .window-titlebar {
-  min-height: 44px;
-}
 /* toolbar */
 .pics-toolbar {
   display: flex;
@@ -124,7 +112,6 @@
   background: #7b74b6;
   color: white;
   font-size: 0.78rem;
-  font-weight: bold;
 }
 .pic-mini-filename {
   overflow: hidden;
@@ -199,13 +186,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #8580ae;
+  border-bottom: 2px solid #8580ae;
   font-size: 1.1rem;
   font-weight: bold;
-}
-.sidebar-accent-corner {
-  color: #625c98;
-  font-size: 1.3rem;
 }
 /*==========================================================================
    PHOTO PREVIEW
@@ -332,11 +315,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 20px;
-  padding-top: 13px;
-  border-top: 1px solid #8580ae;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 2px solid #8580ae;
   color: #58528d;
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   letter-spacing: 1px;
 }
 .pixel-squares {
