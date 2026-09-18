@@ -1,0 +1,141 @@
+---
+import Layout from '../layouts/layout.astro';
+import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
+import Window from '../components/Window.astro';
+
+const dateFormatter = new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Lima' });
+const entries = (await getCollection('pics')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const pics = await Promise.all(entries.map(async ({ id, data }) => ({
+  ...data,
+  filename: `${id}.jpg`,
+  date: dateFormatter.format(data.pubDate),
+  src: (await getImage({ src: data.image, width: 640, format: 'webp' })).src,
+})));
+const firstPic = pics[0];
+const sorts = [['latest', 'Latest'], ['oldest', 'Oldest'], ['az', 'A - Z']];
+---
+
+<Layout title="Pics // Midnight Commit">
+  <main class="pics-page-wrapper">
+    <Window title="// PICS" id="pics-main" isStatic>
+      <div class="pics-toolbar">
+        <div class="pics-tabs" role="group" aria-label="Ordenar fotos">
+          {sorts.map(([sort, label], index) => (
+            <button type="button" class:list={['tab-btn', { active: index === 0 }]}
+              data-sort={sort} aria-pressed={index === 0}>{label}</button>
+          ))}
+        </div>
+        <div class="pics-quote">same places,<br />different perspective.</div>
+      </div>
+
+      <div class="pics-grid" id="pics-gallery-grid">
+        {pics.map((pic, index) => (
+          <button type="button" class:list={['pic-card', { selected: index === 0 }]}
+            aria-pressed={index === 0} aria-controls="photo-preview"
+            data-img={pic.src} data-filename={pic.filename} data-title={pic.title}
+            data-date={pic.date} data-rawdate={pic.pubDate.valueOf()} data-desc={pic.description ?? ''}>
+            <span class="pic-mini-window">
+              <span class="pic-mini-titlebar">
+                <span class="pic-mini-filename">{pic.filename}</span>
+                <span class="pic-mini-controls" aria-hidden="true"><span>_</span><span>□</span><span>✕</span></span>
+              </span>
+              <span class="pic-mini-body">
+                <img src={pic.src} alt={pic.title} class="pic-mini-img" width="640" height="400" loading="lazy" decoding="async" />
+              </span>
+            </span>
+            <span class="pic-meta">
+              <span class="pic-meta-title">{pic.title}</span>
+              <time class="pic-meta-date" datetime={pic.pubDate.toISOString()}>{pic.date}</time>
+            </span>
+          </button>
+        ))}
+        {pics.length === 0 && <p>No pics uploaded yet.</p>}
+      </div>
+    </Window>
+
+    <aside class="pics-sidebar">
+      <section id="photo-preview" aria-labelledby="preview-heading">
+        <h2 class="sidebar-heading" id="preview-heading">// photo preview <span class="sidebar-accent-corner" aria-hidden="true">⌝</span></h2>
+        {firstPic ? (
+          <>
+            <div class="viewfinder-wrapper">
+              <div class="viewfinder-img-box">
+                <img id="active-preview-img" class="viewfinder-img" src={firstPic.src} alt={firstPic.title} width="640" height="400" />
+              </div>
+              <span class="viewfinder-corners" aria-hidden="true"></span>
+              <span class="viewfinder-corners-b" aria-hidden="true"></span>
+            </div>
+            <div aria-live="polite" aria-atomic="true">
+              <p class="preview-filename" id="active-preview-filename">{firstPic.filename}</p>
+              <h3 class="preview-title" id="active-preview-title">{firstPic.title}</h3>
+              <p class="preview-date" id="active-preview-date">{firstPic.date}</p>
+              <hr class="preview-separator" />
+              <p class="preview-desc" id="active-preview-desc">{firstPic.description}</p>
+            </div>
+          </>
+        ) : <p>No photo to preview.</p>}
+      </section>
+      <section class="about-page-box" aria-labelledby="about-pics-heading">
+        <h2 class="sidebar-heading" id="about-pics-heading">// about this page</h2>
+        <div class="about-page-content">
+          <span class="about-camera-icon" aria-hidden="true">📷</span>
+          <div class="about-page-text">
+            <p>A collection of random photos. Places I go, things I see, stuff that makes me happy.</p>
+            <div class="about-page-poetry"><span>take pictures</span><span>collect moments</span><span>remember why</span></div>
+          </div>
+        </div>
+      </section>
+      <footer class="sidebar-footer-bar">
+        <span>SOME PLACES FEEL LIKE HOME</span><span class="pixel-squares" aria-hidden="true">▪▪▪▪</span>
+      </footer>
+    </aside>
+  </main>
+</Layout>
+
+<script>
+  function initPicsPage() {
+    const page = document.querySelector<HTMLElement>('.pics-page-wrapper');
+    if (!page || page.dataset.initialized) return;
+    page.dataset.initialized = 'true';
+
+    const grid = page.querySelector<HTMLElement>('#pics-gallery-grid')!;
+    const cards = Array.from(grid.querySelectorAll<HTMLButtonElement>('.pic-card'));
+    const tabs = page.querySelectorAll<HTMLButtonElement>('.tab-btn');
+    const previewImg = page.querySelector<HTMLImageElement>('#active-preview-img');
+    const fields = ['filename', 'title', 'date', 'desc'].map((key) => ({
+      key, element: page.querySelector<HTMLElement>(`#active-preview-${key}`),
+    }));
+
+    page.addEventListener('click', (event) => {
+      if (!(event.target instanceof Element)) return;
+      const card = event.target.closest<HTMLButtonElement>('.pic-card');
+      if (card && previewImg) {
+        cards.forEach((item) => {
+          item.classList.toggle('selected', item === card);
+          item.setAttribute('aria-pressed', String(item === card));
+        });
+        previewImg.src = card.dataset.img!;
+        previewImg.alt = card.dataset.title ?? '';
+        fields.forEach(({ key, element }) => {
+          if (element) element.textContent = card.dataset[key] ?? '';
+        });
+      }
+      const tab = event.target.closest<HTMLButtonElement>('.tab-btn');
+      if (!tab) return;
+      tabs.forEach((item) => {
+        item.classList.toggle('active', item === tab);
+        item.setAttribute('aria-pressed', String(item === tab));
+      });
+      cards.sort((a, b) => tab.dataset.sort === 'az'
+        ? (a.dataset.title ?? '').localeCompare(b.dataset.title ?? '')
+        : (Number(a.dataset.rawdate) - Number(b.dataset.rawdate)) * (tab.dataset.sort === 'oldest' ? 1 : -1)
+      );
+      grid.append(...cards);
+    });
+  }
+  initPicsPage();
+  document.addEventListener('astro:page-load', initPicsPage);
+</script>

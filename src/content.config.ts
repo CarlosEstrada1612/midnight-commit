@@ -19,5 +19,14 @@ const blog = defineCollection({
 			minRead: z.number().optional(),
 		}),
 });
-
-export const collections = { blog };
+const pics = defineCollection({
+	loader: glob({ base: './src/content/pics', pattern: '**/*.{md,mdx}' }),
+	schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+			description: z.string().optional(),
+			pubDate: z.coerce.date(),
+			image: image(),
+		}),
+});
+export const collections = { blog, pics };

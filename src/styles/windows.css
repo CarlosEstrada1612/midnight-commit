@@ -73,6 +73,12 @@
     width: 100%;
     height: 100%;
 }
+.window--static {
+    position: relative;
+    width: 100%;
+    left: auto;
+    top: auto;
+}
 .about-window {
     display: flex;
     flex-direction: column;
@@ -183,3 +189,4 @@
 #win-about   { left: 12px;   top: 12px; }
 #win-latest  { left: 389px; top: 12px; }
 #win-system  { left: 1126px; top: 12px; }
+#win-music   { left: 12px;   top: 310px; }

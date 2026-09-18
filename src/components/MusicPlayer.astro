@@ -1,0 +1,93 @@
+---
+import { Image } from 'astro:assets';
+import musicGif from '../assets/gifs/323530c226f4c9dbda3dfd5b001422b8.gif';
+---
+
+<div id="music-player-container" transition:persist="midnight-music-player">
+    <audio id="audio-element" src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+            preload="metadata"></audio>
+    <div class="cd-player">
+        <!-- Columna Izquierda: Disco / Vinilo -->
+        <div class="cd-disc-container">
+            <Image src={musicGif} alt="Disc" class="cd-disc" />
+        </div>
+        <!-- Columna Derecha: Controles -->
+        <div class="cd-controls">
+            <!-- 1. Nombre de la canción -->
+            <div class="retro-title-box">
+                <span class="track-title-text">🎵 Yacht Rock - Funk</span>
+            </div>
+            <!-- 2. Barra de tiempo y Slider interactivo -->
+            <div class="cd-timeline">
+                <span id="time-current" class="cd-time">0:00</span>
+                <input type="range" id="seek-slider" class="retro-slider" value="0" min="0" max="100" step="1" />
+                <span id="time-total" class="cd-time">0:00</span>
+            </div>
+            <!-- 3. Botón de reproducción -->
+            <div class="cd-buttons">
+                <button id="btn-play" class="retro-btn" title="Play / Pause">▶ PLAY</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Lógica del reproductor
+    function setupPlayer() {
+        const audio = document.getElementById('audio-element') as HTMLAudioElement;
+        const playBtn = document.getElementById('btn-play');
+        const slider = document.getElementById('seek-slider') as HTMLInputElement;
+        const timeCurrent = document.getElementById('time-current');
+        const timeTotal = document.getElementById('time-total');
+
+        if (!audio || !playBtn || playBtn.dataset.ready) return;
+        playBtn.dataset.ready = 'true';
+
+        // Formatear segundos a MM:SS
+        function formatTime(sec: number) {
+            if (isNaN(sec)) return '0:00';
+            const m = Math.floor(sec / 60);
+            const s = Math.floor(sec % 60);
+            return `${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+        // Play / Pause
+        playBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playBtn.textContent = '⏸ PAUSE';
+            } else {
+                audio.pause();
+                playBtn.textContent = '▶ PLAY';
+            }
+        });
+        // Duración total cuando cargue
+        audio.addEventListener('loadedmetadata', () => {
+            if (timeTotal) timeTotal.textContent = formatTime(audio.duration);
+        });
+        // Actualizar barra y tiempo transcurrido
+        audio.addEventListener('timeupdate', () => {
+            if (!isNaN(audio.duration) && audio.duration > 0) {
+                const percent = (audio.currentTime / audio.duration) * 100;
+                if (slider) slider.value = percent.toString();
+                if (timeCurrent) timeCurrent.textContent = formatTime(audio.currentTime);
+            }
+        });
+        // Adelantar o retroceder con el slider
+        if (slider) {
+            slider.addEventListener('input', () => {
+                if (!isNaN(audio.duration) && audio.duration > 0) {
+                    audio.currentTime = (parseFloat(slider.value) / 100) * audio.duration;
+                }
+            });
+        }
+        // Al terminar la pista
+        audio.addEventListener('ended', () => {
+            playBtn.textContent = '▶ PLAY';
+            if (slider) slider.value = '0';
+            if (timeCurrent) timeCurrent.textContent = '0:00';
+        });
+    }
+    // Ejecutar al cargar la página
+    setupPlayer();
+    document.addEventListener('astro:page-load', setupPlayer);
+</script>
