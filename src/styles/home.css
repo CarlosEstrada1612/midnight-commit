@@ -1,0 +1,353 @@
+/* PRIMERAS TRES VENTANAS: ajusta sus medidas aquí. */
+
+.home-windows {
+    display: grid;
+    /* Anchos: About | Latest Commit | My System. */
+    grid-template-columns: 1fr 670px 1fr;
+    gap: 16px;
+    /* Separación entre ventanas. */
+    align-items: stretch;
+}
+
+.home-windows > .window:not(.maximized):not(.minimized) {
+    min-height: 310px;
+    /* Altura mínima; las tres crecen juntas si hace falta. */
+}
+
+/* Mantiene el contenido dentro de cada ventana. */
+
+.home-windows > .window {
+    min-width: 0;
+}
+
+.home-windows > .window:not(.hidden) {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-windows .window-titlebar {
+    flex-shrink: 0;
+}
+
+.home-windows > .window.minimized {
+    align-self: start;
+}
+
+/* Fondo y margen exterior de la portada. */
+
+.windows-container {
+    background-image: url('../assets/site/index-background.jpg');
+    min-height: 100vh;
+    padding: 12px;
+}
+
+/* Contenido de Latest Commit, incluida la imagen. */
+
+.latest-image {
+    /* Cambia aquí el ancho de la imagen. */
+    width: 300px;
+    flex-shrink: 0;
+}
+
+.latest-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+}
+
+.latest-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.latest-category {
+    font-size: 0.9rem;
+    color: var(--color-accent-hover);
+    font-weight: bold;
+}
+
+.latest-title {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+
+.latest-title a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.latest-title a:hover {
+    color: var(--color-accent);
+}
+
+.latest-meta {
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+.latest-desc {
+    margin: 0;
+    font-size: 0.85rem;
+    opacity: 0.85;
+}
+
+.latest-readmore {
+    font-size: 0.9rem;
+    color: var(--color-accent-hover);
+    text-decoration: none;
+}
+
+.latest-commit {
+    width: 100%;
+    display: flex;
+    gap: 25px;
+    padding: 6px;
+}
+
+/* Contenido de About y My System. */
+
+.about-intro, .system-parts {
+    min-width: 0;
+}
+
+.about-window {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 100%;
+}
+
+.about-top {
+    display: flex;
+    gap: 0px;
+    align-items: flex-start;
+}
+
+.about-top img {
+    width: min(160px, 45%);
+    height: auto;
+    image-rendering: pixelated;
+    flex-shrink: 0;
+}
+
+.about-intro p {
+    margin: 0 0 5px 0;
+    max-width: 250px;
+}
+
+.about-name {
+    color: var(--color-accent);
+}
+
+.about-link {
+    color: var(--color-accent-hover);
+    text-decoration: none;
+}
+
+.about-link:hover {
+    text-decoration: underline;
+}
+
+.system-window {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 100%;
+}
+
+.system-parts p {
+    margin: 0 0 10px 0;
+    max-width: 250px;
+}
+
+.system-top {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.system-top img {
+    width: min(160px, 45%);
+    height: auto;
+    flex-shrink: 0;
+}
+
+/* Game Boy: tamaño de la consola y posición de Mario. */
+
+.gameboy {
+    position: relative;
+    left: 5px;
+    /* derecha; negativo = izquierda */
+    top: 0px;
+    /* abajo; negativo = arriba */
+    width: 420px;
+    max-width: 100%;
+    align-self: start;
+    overflow: hidden;
+}
+
+.gameboy .gameboy-shell {
+    width: 166.6667%;
+    max-width: none;
+    margin-left: -32.38%;
+    height: auto;
+    display: block;
+}
+
+.gameboy-screen {
+    position: absolute;
+    left: 25.7%;
+    top: 14%;
+    width: 45.8%;
+    height: 27.8%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 8%;
+    pointer-events: none;
+}
+
+.gameboy-screen .gameboy-mario {
+    position: relative;
+    left: 5px;
+    /* positivo: derecha; negativo: izquierda */
+    top: 35px;
+    /* positivo: abajo; negativo: arriba */
+    display: block;
+    width: auto;
+    height: 200px;
+    max-width: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+/* Fila inferior: cuadros de memoria y Game Boy. */
+
+.gameboy-corner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 420px minmax(0, 1fr);
+    align-items: stretch;
+    gap: 12px;
+    padding: 16px 0;
+}
+
+/* Cuadros de memoria: fondo, borde y separación interior. */
+
+.retro-panel {
+    position: relative;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 24px clamp(16px, 2vw, 30px) 44px;
+    background-color: #403655;
+    background-image: url('../assets/site/memory-background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 4px outset var(--color-bg);
+    border-radius: 0;
+    box-shadow: inset 0 0 0 5px #30283e, 3px 3px 0 #171122;
+    color: #eee6d7;
+}
+
+.retro-panel::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 12%;
+    right: 12%;
+    height: 24px;
+    background: repeating-linear-gradient(90deg, #c8a45e 0 9px, #f0d99b 9px 11px, #30283e 11px 16px);
+    border-top: 3px solid #a1834c;
+    pointer-events: none;
+}
+
+.retro-panel .window {
+    color: var(--color-text);
+}
+
+.retro-panel-label, .retro-panel-note {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    text-align: center;
+}
+
+.retro-panel-label {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    background: var(--color-bg);
+    color: var(--color-accent);
+    border: 4px outset var(--color-bg);
+    padding: 10px 8px;
+}
+
+.retro-panel-note {
+    color: #dfd2ad;
+    background: #30283e;
+    padding: 6px;
+}
+
+.retro-panel .window--static:not(.maximized) {
+    position: relative;
+    inset: auto;
+    margin-top: -16px;
+    /* Sube las ventanas interiores. */
+    width: 100%;
+    max-width: 360px;
+    margin-inline: auto;
+    flex-shrink: 0;
+}
+
+/*undefinedPantallas pequeñas: excepciones a las medidas de arriba.undefined*/
+
+@media (max-width: 1200px) {
+    .home-windows {
+        grid-template-columns: 1fr;
+    }
+
+    .home-windows > .window:not(.maximized):not(.minimized) {
+        min-height: 0;
+    }
+}
+
+@media (max-width: 1050px) {
+    .gameboy-corner {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .gameboy {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        justify-self: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .latest-commit {
+        flex-direction: column;
+    }
+
+    .latest-image {
+        width: 100%;
+    }
+
+    .gameboy-corner {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 8px 0;
+    }
+
+    .about-top, .system-top {
+        flex-direction: column;
+    }
+}

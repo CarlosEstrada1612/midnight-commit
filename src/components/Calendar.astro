@@ -74,18 +74,90 @@
 </script>
 
 <style>
-  .calendar-widget { width: 100%; font-family: var(--font-mono); }
-  .calendar-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-  [data-month] { text-transform: capitalize; font-weight: bold; text-align: center; font-size: 0.8rem; }
-  button { font: inherit; color: var(--color-accent); background: var(--color-bg); border: 2px outset var(--color-bg); cursor: pointer; min-height: 30px; }
-  .calendar-header button { min-width: 30px; }
-  button:active { border-style: inset; }
-  button:focus-visible { outline: 2px solid var(--color-accent-hover); outline-offset: 2px; }
-  table { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 6px 0; text-align: center; border: 2px solid var(--color-accent); }
-  th, td { border: 1px solid var(--color-accent); padding: 0; }
-  th { height: 24px; font-size: 0.65rem; color: white; background: var(--color-accent); border-color: var(--color-bg); }
-  td { height: 26px; font-size: 0.75rem; background: var(--color-bg-secondary); }
-  td:empty { background: var(--color-bg); }
-  td[aria-current='date'] { background: var(--color-accent); color: white; font-weight: bold; outline: 1px solid var(--color-border); }
-  .calendar-today { display: block; margin: 0 auto; padding: 2px 12px; font-size: 0.75rem; }
+  .calendar-widget {
+      width: 100%;
+      font-family: var(--font-mono);
+  }
+
+  .calendar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+  }
+
+  [data-month] {
+      text-transform: capitalize;
+      font-weight: bold;
+      text-align: center;
+      font-size: 0.8rem;
+  }
+
+  button {
+      font: inherit;
+      color: var(--color-accent);
+      background: var(--color-bg);
+      border: 2px outset var(--color-bg);
+      cursor: pointer;
+      min-height: 30px;
+  }
+
+  .calendar-header button {
+      min-width: 30px;
+  }
+
+  button:active {
+      border-style: inset;
+  }
+
+  button:focus-visible {
+      outline: 2px solid var(--color-accent-hover);
+      outline-offset: 2px;
+  }
+
+  table {
+      width: 100%;
+      table-layout: fixed;
+      border-collapse: collapse;
+      margin: 6px 0;
+      text-align: center;
+      border: 2px solid var(--color-accent);
+  }
+
+  th, td {
+      border: 1px solid var(--color-accent);
+      padding: 0;
+  }
+
+  th {
+      height: 24px;
+      font-size: 0.65rem;
+      color: white;
+      background: var(--color-accent);
+      border-color: var(--color-bg);
+  }
+
+  td {
+      height: 26px;
+      font-size: 0.75rem;
+      background: var(--color-bg-secondary);
+  }
+
+  td:empty {
+      background: var(--color-bg);
+  }
+
+  td[aria-current='date'] {
+      background: var(--color-accent);
+      color: white;
+      font-weight: bold;
+      outline: 1px solid var(--color-border);
+  }
+
+  .calendar-today {
+      display: block;
+      margin: 0 auto;
+      padding: 2px 12px;
+      font-size: 0.75rem;
+  }
 </style>

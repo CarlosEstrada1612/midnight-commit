@@ -1,7 +1,49 @@
 ---
+import '../styles/footer.css';
+import { Image } from 'astro:assets';
+import { SITE_TITLE } from '../consts';
+import logoImg from '../assets/site/logo.png';
 
+const year = new Date().getFullYear();
 ---
 
-<footer>
-	
+<footer class="site-footer">
+
+  <div class="footer-content">
+    <div class="footer-brand">
+      <a href="/" class="footer-logo">
+        <Image src={logoImg} alt={SITE_TITLE} />
+      </a>
+      <p>Thanks for visiting! <span aria-hidden="true">✦</span></p>
+    </div>
+
+    <nav class="footer-links" aria-label="Footer">
+      <h2>Quick Links</h2>
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/pics/">Pics</a>
+      <a href="/about/">About Me</a>
+      <a href="/rss.xml">RSS Feed</a>
+    </nav>
+
+    <div class="footer-about">
+      <h2>About This Site</h2>
+      <p>Midnight Commit is my little corner of the internet. Code, computers, retro games, and things I discover after dark.</p>
+      <p class="footer-signature">Inspired by the old web.</p>
+    </div>
+
+    <div class="footer-visitors">
+      <h2>Visitors</h2>
+      <!-- Connect real visit statistics before displaying a number. -->
+      <div class="footer-counter" aria-label="Visitor count not available">------</div>
+      <p>Since 2026 <span aria-hidden="true">♡</span></p>
+      <p>Glad you found your way here.</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; {year} Carlos · Computer Engineering Student</p>
+    <p>Made with <span aria-hidden="true">♥</span> and lots of coffee.</p>
+  </div>
+
 </footer>

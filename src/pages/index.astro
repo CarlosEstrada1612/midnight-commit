@@ -1,4 +1,5 @@
 ---
+import '../styles/home.css';
 import Layout from '../layouts/layout.astro';
 import Window from '../components/Window.astro';
 import { Image } from 'astro:assets';
@@ -9,66 +10,57 @@ import Calendar from '../components/Calendar.astro';
 import Gameboy from '../assets/site/s-l1200.png';
 import marioWalk from '../assets/gifs/DKOVUOTX5YK675CEULVSMQA45GHR6XEI.gif';
 import LatestPics from '../components/LatestPics.astro';
-import win98Badge from '../assets/gifs/win98_891.gif';
-import n64Badge from '../assets/gifs/n64_com_now.gif';
-import digitalBadge from '../assets/gifs/thedigitalme.gif';
-import wiiBadge from '../assets/gifs/wii_button.gif';
 ---
 
 <Layout title="Midnight Commit">
   <div class="windows-container">
 
-    <Window title="about me" id="win-about">
-      <div class="about-window">
-        <div class="about-top">
-          <Image src={avatarImg} alt="avatar" />
-          <div class="about-intro">
-            <p>Hey! I'm <span class="about-name">Carlos</span>.</p>
-            <p>Computer Science enthusiast who loves retro games, old websites & city pop.</p>
+    <div class="home-windows">
+      <Window title="about me" id="win-about">
+        <div class="about-window">
+          <div class="about-top">
+            <Image src={avatarImg} alt="avatar" />
+            <div class="about-intro">
+              <p>Hey! I'm <span class="about-name">Carlos</span>.</p>
+              <p>Computer Science enthusiast who loves retro games, old websites & city pop.</p>
+            </div>
           </div>
+          <p>PUCP Student, Linux user, vintage web developer, peru es clave</p>
+          <a class="about-link" href="/about"> &gt; more about me_</a>
         </div>
-        <p>PUCP Student, Linux user, vintage web developer, peru es clave</p>
-        <a class="about-link" href="/about"> &gt more about me_</a>
-      </div>
-    </Window>
+      </Window>
 
-    <Window title="my system" id="win-system">
-      <div class="system-window">
-        <div class="system-top">
-          <Image src={computerImg} alt="computer"/>
-          <div class="system-parts">
+      <Window title="latest commit" id="win-latest">
+        <LatestCommit />
+      </Window>
+
+      <Window title="my system" id="win-system">
+        <div class="system-window">
+          <div class="system-top">
+            <Image src={computerImg} alt="computer"/>
+            <div class="system-parts">
               <p>OS0: Windows 10 LTSC</p>
               <p>OS1: Linux Mint</p>
               <p>CPU: Intel i7 4790k</p>
               <p>RAM: 12GB DDR3</p>
               <p>GPU: RX 590 GME</p>
             </div>
+          </div>
         </div>
-      </div>
-      <img src="src/assets/gifs/win98_891.gif"/>
-      <img src="src/assets/gifs/n64_com_now.gif"/>
-      <img src="src/assets/gifs/thedigitalme.gif"/>
-      <img src="src/assets/gifs/wii_button.gif"/>
-    </Window>
+        <img src="src/assets/gifs/win98_891.gif"/>
+        <img src="src/assets/gifs/n64_com_now.gif"/>
+        <img src="src/assets/gifs/thedigitalme.gif"/>
+        <img src="src/assets/gifs/wii_button.gif"/>
+      </Window>
 
-    <Window title="latest commit" id="win-latest">
-      <LatestCommit />
-    </Window>
+    </div>
 
     <section class="gameboy-corner" aria-label="Mi rincón retro">
       <div class="retro-panel">
         <p class="retro-panel-label">BANK 01 · DAILY SAVE<br />RTC / CALENDAR MODULE</p>
-        <div class="retro-stickers" aria-hidden="true">
-          <img src={computerImg.src} alt="" class="retro-character" />
-          <img src={win98Badge.src} alt="" />
-        </div>
         <Window title="calendar" id="win-calendar" isStatic>
           <Calendar />
         </Window>
-        <div class="retro-stickers" aria-hidden="true">
-          <img src={digitalBadge.src} alt="" />
-          <img src={n64Badge.src} alt="" />
-        </div>
         <p class="retro-panel-note">0x0001 · one day, one little memory.</p>
       </div>
 
@@ -84,15 +76,9 @@ import wiiBadge from '../assets/gifs/wii_button.gif';
         <Window title="latest pics" id="win-pics" isStatic>
           <LatestPics />
         </Window>
-        <div class="retro-stickers" aria-hidden="true">
-          <img src={avatarImg.src} alt="" class="retro-character" />
-          <img src={wiiBadge.src} alt="" />
-          <img src={n64Badge.src} alt="" />
-        </div>
         <p class="retro-panel-note">0x0002 · a few pixels worth keeping.</p>
       </div>
     </section>
-
 
   </div>
 </Layout>

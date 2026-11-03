@@ -1,4 +1,5 @@
 ---
+import '../styles/pics.css';
 import Layout from '../layouts/layout.astro';
 import { getCollection } from 'astro:content';
 import { getImage } from 'astro:assets';
@@ -129,10 +130,16 @@ const sorts = [['latest', 'Latest'], ['oldest', 'Oldest'], ['az', 'A - Z']];
         item.classList.toggle('active', item === tab);
         item.setAttribute('aria-pressed', String(item === tab));
       });
-      cards.sort((a, b) => tab.dataset.sort === 'az'
-        ? (a.dataset.title ?? '').localeCompare(b.dataset.title ?? '')
-        : (Number(a.dataset.rawdate) - Number(b.dataset.rawdate)) * (tab.dataset.sort === 'oldest' ? 1 : -1)
-      );
+      // Ordenar por título o por fecha, según la pestaña seleccionada.
+      cards.sort((a, b) => {
+        if (tab.dataset.sort === 'az') {
+          return (a.dataset.title ?? '').localeCompare(b.dataset.title ?? '');
+        }
+
+        const dateDifference = Number(a.dataset.rawdate) - Number(b.dataset.rawdate);
+        if (tab.dataset.sort === 'oldest') return dateDifference;
+        return -dateDifference;
+      });
       grid.append(...cards);
     });
   }

@@ -1,4 +1,6 @@
 ---
+import '../styles/windows.css';
+
 interface Props {
     title: string;
     isStatic?: boolean;
@@ -29,55 +31,64 @@ const { title, isStatic = false, id } = Astro.props;
     ventanas.forEach((ventana) => {
         if (ventana.dataset.initialized) return;
         ventana.dataset.initialized = 'true';
+        // Minimizar: mostrar u ocultar el contenido.
         const minimizeButton = ventana.querySelector('.btn-minimize');
         if (minimizeButton) {
             minimizeButton.addEventListener('click', () => {
                 ventana.classList.toggle('minimized');
             });
         }
+
+        // Maximizar: guardar la posición para poder restaurarla.
         const maximizeButton = ventana.querySelector('.btn-maximize');
         if (maximizeButton) {
             maximizeButton.addEventListener('click', () => {
-                if(ventana.classList.contains('maximized')) {
-                    (ventana as HTMLElement).style.left = (ventana as HTMLElement).dataset.prevLeft || '';
-                    (ventana as HTMLElement).style.top = (ventana as HTMLElement).dataset.prevTop || '';
+                if (ventana.classList.contains('maximized')) {
+                    ventana.style.left = ventana.dataset.prevLeft || '';
+                    ventana.style.top = ventana.dataset.prevTop || '';
                 } else {
-                    (ventana as HTMLElement).dataset.prevLeft = (ventana as HTMLElement).style.left;
-                    (ventana as HTMLElement).dataset.prevTop  = (ventana as HTMLElement).style.top;
-                    (ventana as HTMLElement).style.left = '';
-                    (ventana as HTMLElement).style.top  = '';
+                    ventana.dataset.prevLeft = ventana.style.left;
+                    ventana.dataset.prevTop  = ventana.style.top;
+                    ventana.style.left = '';
+                    ventana.style.top  = '';
                 }
                 ventana.classList.toggle('maximized');
             });
         }
+
+        // Cerrar: ocultar la ventana.
         const closeButton = ventana.querySelector('.btn-close');
         if (closeButton) {
             closeButton.addEventListener('click', () => {
                 ventana.classList.add('hidden');
             });
         }
-        const titleBar = ventana.querySelector('.window-titlebar');
-        if(titleBar) {
+
+        // Arrastrar desde la barra de título, solo en escritorio.
+        const titleBar = ventana.querySelector<HTMLElement>('.window-titlebar');
+        if (titleBar) {
             titleBar.addEventListener('mousedown', (e) => {
-                if(ventana.classList.contains('maximized') || ventana.classList.contains('window--static')) return;
+                if (e.button !== 0 || !window.matchMedia('(min-width: 1201px)').matches) return;
+                if (ventana.classList.contains('maximized') || ventana.classList.contains('window--static')) return;
                 if ((e.target as Element).closest('button')) return;
 
-                const offsetX = (e as MouseEvent).clientX - (ventana as HTMLElement).offsetLeft;
-                const offsetY = (e as MouseEvent).clientY - (ventana as HTMLElement).offsetTop;
+                e.preventDefault();
+                const offsetX = e.clientX - (parseFloat(ventana.style.left) || 0);
+                const offsetY = e.clientY - (parseFloat(ventana.style.top) || 0);
 
-                const HandleMouseMove = (e: MouseEvent) => {
-                    (ventana as HTMLElement).style.left = e.clientX - offsetX + 'px';
-                    (ventana as HTMLElement).style.top  = e.clientY - offsetY + 'px';
+                const handleMouseMove = (e: MouseEvent) => {
+                    ventana.style.left = e.clientX - offsetX + 'px';
+                    ventana.style.top  = e.clientY - offsetY + 'px';
                 };
 
-                document.addEventListener('mousemove', HandleMouseMove);
+                document.addEventListener('mousemove', handleMouseMove);
 
-                const HandleMouseUp = () => {
-                    document.removeEventListener('mousemove', HandleMouseMove);
-                    document.removeEventListener('mouseup', HandleMouseUp);
+                const handleMouseUp = () => {
+                    document.removeEventListener('mousemove', handleMouseMove);
+                    document.removeEventListener('mouseup', handleMouseUp);
                 };
 
-                document.addEventListener('mouseup', HandleMouseUp);
+                document.addEventListener('mouseup', handleMouseUp);
             });
         }
     });
