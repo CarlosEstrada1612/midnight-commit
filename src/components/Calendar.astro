@@ -1,64 +1,91 @@
----
-
-
----
-
-<div class="calendar-widget">
+<div class="calendar-widget" data-calendar>
   <div class="calendar-header">
-    <button id="cal-prev">&lt;</button>
-    <span id="cal-month-year"></span>
-    <button id="cal-next">&gt;</button>
+    <button type="button" data-prev aria-label="Mes anterior">&lt;</button>
+    <span data-month aria-live="polite" aria-atomic="true"></span>
+    <button type="button" data-next aria-label="Mes siguiente">&gt;</button>
   </div>
-  <div class="calendar-weekdays">
-    <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
-  </div>
-  <div id="calendar-grid" class="calendar-days">
-    <!-- Aquí tu JavaScript insertará los días -->
-  </div>
+  <table aria-label="Calendario mensual">
+    <thead><tr>
+      {['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'].map((day) => <th scope="col">{day}</th>)}
+    </tr></thead>
+    <tbody>
+      {Array.from({ length: 6 }, () => (
+        <tr>{Array.from({ length: 7 }, () => <td data-day></td>)}</tr>
+      ))}
+    </tbody>
+  </table>
+  <button type="button" class="calendar-today" data-today>Volver a hoy</button>
+  <noscript>Activa JavaScript para ver el calendario.</noscript>
 </div>
 
 <script>
+  function initCalendars() {
+    document.querySelectorAll<HTMLElement>('[data-calendar]').forEach((calendar) => {
+      if (calendar.dataset.initialized) return;
+      calendar.dataset.initialized = 'true';
 
-  const today=new Date();
-  const currentYear = today.getFullYear();
-  const currentMonth = today.getMonth();
-  const currentDay = today.getDate();
+      const current = new Date();
+      let month = current.getMonth();
+      let year = current.getFullYear();
+      const heading = calendar.querySelector<HTMLElement>('[data-month]')!;
+      const table = calendar.querySelector('table')!;
+      const cells = calendar.querySelectorAll<HTMLTableCellElement>('[data-day]');
+      const formatter = new Intl.DateTimeFormat('es-PE', { month: 'long', year: 'numeric' });
 
-  let month = new Date().getMonth();
-  let year = new Date().getFullYear();
+      function render() {
+        const today = new Date();
+        const firstDay = new Date(year, month, 1).getDay();
+        const lastDay = new Date(year, month + 1, 0).getDate();
+        const label = formatter.format(new Date(year, month, 1));
+        heading.textContent = label;
+        table.setAttribute('aria-label', label);
+        cells.forEach((cell, index) => {
+          const day = index - firstDay + 1;
+          const valid = day > 0 && day <= lastDay;
+          cell.textContent = valid ? String(day) : '';
+          const isToday = valid && day === today.getDate()
+            && month === today.getMonth() && year === today.getFullYear();
+          if (isToday) cell.setAttribute('aria-current', 'date');
+          else cell.removeAttribute('aria-current');
+        });
+      }
 
-  function generateCalendar(month: number, year: number) {
-    const firstDay = new Date(year, month, 1).getDay();
-    const lastDate = new Date(year, month + 1, 0).getDate();
-    const calendarDays = [];
+      function moveMonth(offset: number) {
+        const date = new Date(year, month + offset, 1);
+        month = date.getMonth();
+        year = date.getFullYear();
+        render();
+      }
 
-    for (let i = 0; i < firstDay; i++) {
-      calendarDays.push('');
-    }
-
-    for (let day = 1; day <= lastDate; day++) {
-      calendarDays.push(day);
-    }
-
-    const grid = document.getElementById('calendar-grid');
-    if (!grid) {
-      return;
-    }
-
-    grid.innerHTML = '';  // limpia el grid antes de dibujar
-    
-    calendarDays.forEach((day) => {
-        const celda = document.createElement('span');
-        celda.textContent = day.toString();
-        // Si es el día de hoy, le agregamos una clase especial
-        if (day === currentDay && month === currentMonth && year === currentYear) {
-            celda.classList.add('cal-today');
-        }
-      grid.appendChild(celda);
+      calendar.querySelector('[data-prev]')!.addEventListener('click', () => moveMonth(-1));
+      calendar.querySelector('[data-next]')!.addEventListener('click', () => moveMonth(1));
+      calendar.querySelector('[data-today]')!.addEventListener('click', () => {
+        const today = new Date();
+        month = today.getMonth();
+        year = today.getFullYear();
+        render();
+      });
+      render();
     });
-
-    return calendarDays;
   }
-  generateCalendar(month, year);
 
+  initCalendars();
+  document.addEventListener('astro:page-load', initCalendars);
 </script>
+
+<style>
+  .calendar-widget { width: 100%; font-family: var(--font-mono); }
+  .calendar-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  [data-month] { text-transform: capitalize; font-weight: bold; text-align: center; font-size: 0.8rem; }
+  button { font: inherit; color: var(--color-accent); background: var(--color-bg); border: 2px outset var(--color-bg); cursor: pointer; min-height: 30px; }
+  .calendar-header button { min-width: 30px; }
+  button:active { border-style: inset; }
+  button:focus-visible { outline: 2px solid var(--color-accent-hover); outline-offset: 2px; }
+  table { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 6px 0; text-align: center; border: 2px solid var(--color-accent); }
+  th, td { border: 1px solid var(--color-accent); padding: 0; }
+  th { height: 24px; font-size: 0.65rem; color: white; background: var(--color-accent); border-color: var(--color-bg); }
+  td { height: 26px; font-size: 0.75rem; background: var(--color-bg-secondary); }
+  td:empty { background: var(--color-bg); }
+  td[aria-current='date'] { background: var(--color-accent); color: white; font-weight: bold; outline: 1px solid var(--color-border); }
+  .calendar-today { display: block; margin: 0 auto; padding: 2px 12px; font-size: 0.75rem; }
+</style>

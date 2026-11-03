@@ -84,20 +84,21 @@
     flex-direction: column;
     padding: 5px;
     width: 340px;
+    height: 280px;
 }
 .about-top {
     display: flex;
-    gap: 10px;
+    gap: 9px;
     align-items: flex-start;
 }
 .about-top img {
     width: 160px;
-    height: 165px;
+    height: 160px;
     image-rendering: pixelated;
     flex-shrink: 0;
 }
 .about-intro p {
-    margin: 0 0 10px 0;
+    margin: 0 0 5px 0;
     max-width: 250px;
 }
 .about-name {
@@ -115,10 +116,10 @@
     flex-direction: column;
     padding: 5px;
     width: 360px;
-    height: 185px;
+    height: 240px;
 }
 .system-parts p {
-    margin: 0 0 10px 0;
+    margin: 0 0 15px 0;
     max-width: 250px;
 }
 .system-top {
@@ -129,7 +130,7 @@
 }
 .system-top img {
     width: 160px;
-    height: 165px;
+    height: 175px;
     flex-shrink: 0;
 }
 .latest-image {
@@ -181,12 +182,132 @@
 }
 .latest-commit{
     width: 700px;
-    height: auto;
+    height: 280px;
     display: flex;
     gap: 25px;
     padding: 6px;
+}
+.gameboy {
+    position: relative;
+    left: 5px; /* derecha; negativo = izquierda */
+    top: 0px; /* abajo; negativo = arriba */
+    width: 420px;
+    max-width: 100%;
+    align-self: start;
+    overflow: hidden;
+}
+.gameboy .gameboy-shell {
+    width: 166.6667%;
+    max-width: none;
+    margin-left: -32.38%;
+    height: auto;
+    display: block;
+}
+.gameboy-screen {
+    position: absolute;
+    left: 25.7%;
+    top: 14%;
+    width: 45.8%;
+    height: 27.8%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 8%;
+    pointer-events: none;
+}
+.gameboy-screen .gameboy-mario {
+    position: relative;
+    left: 5px; /* positivo: derecha; negativo: izquierda */
+    top: 35px; /* positivo: abajo; negativo: arriba */
+    display: block;
+    width: auto;
+    height: 200px;
+    max-width: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
 }
 #win-about   { left: 12px;   top: 12px; }
 #win-latest  { left: 389px; top: 12px; }
 #win-system  { left: 1126px; top: 12px; }
 #win-music   { left: 12px;   top: 310px; }
+.gameboy-corner {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 420px minmax(0, 1fr);
+    align-items: stretch;
+    gap: 12px;
+    margin-top: 345px;
+    padding: 16px;
+}
+.retro-panel {
+    position: relative;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 24px clamp(16px, 2vw, 30px) 44px;
+    background-color: #403655;
+    background-image:
+        radial-gradient(circle, #c2b582 2px, transparent 3px),
+        linear-gradient(90deg, transparent 23px, #75638455 24px, #75638455 25px, transparent 26px),
+        linear-gradient(0deg, transparent 23px, #75638455 24px, #75638455 25px, transparent 26px);
+    background-size: 48px 48px, 48px 48px, 48px 48px;
+    border: 4px outset var(--color-bg);
+    border-radius: 0;
+    box-shadow: inset 0 0 0 5px #30283e, 3px 3px 0 #171122;
+    color: #eee6d7;
+}
+.retro-panel::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 12%;
+    right: 12%;
+    height: 24px;
+    background: repeating-linear-gradient(90deg, #c8a45e 0 9px, #f0d99b 9px 11px, #30283e 11px 16px);
+    border-top: 3px solid #a1834c;
+    pointer-events: none;
+}
+.retro-panel .window { color: var(--color-text); }
+.retro-panel-label, .retro-panel-note {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    text-align: center;
+}
+.retro-panel-label {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    background: var(--color-bg);
+    color: var(--color-accent);
+    border: 4px outset var(--color-bg);
+    padding: 10px 8px;
+}
+.retro-panel-note { color: #dfd2ad; background: #30283e; padding: 6px; }
+.retro-panel .window--static:not(.maximized) {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    max-width: 360px;
+    margin-inline: auto;
+    flex-shrink: 0;
+}
+.retro-panel .window.maximized { z-index: 20; }
+.retro-stickers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.retro-stickers img { max-width: 100%; height: auto; image-rendering: pixelated; }
+.retro-stickers .retro-character { width: 96px; }
+@media (max-width: 1050px) {
+    .gameboy-corner { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .gameboy { grid-column: 1 / -1; grid-row: 1; justify-self: center; }
+}
+@media (max-width: 600px) {
+    .gameboy-corner { grid-template-columns: minmax(0, 1fr); padding: 8px; }
+}

@@ -24,8 +24,11 @@ const { title, isStatic = false, id } = Astro.props;
 </div>
 
 <script>
-    const ventanas = document.querySelectorAll('.window');
+  function initWindows() {
+    const ventanas = document.querySelectorAll<HTMLElement>('.window');
     ventanas.forEach((ventana) => {
+        if (ventana.dataset.initialized) return;
+        ventana.dataset.initialized = 'true';
         const minimizeButton = ventana.querySelector('.btn-minimize');
         if (minimizeButton) {
             minimizeButton.addEventListener('click', () => {
@@ -56,7 +59,8 @@ const { title, isStatic = false, id } = Astro.props;
         const titleBar = ventana.querySelector('.window-titlebar');
         if(titleBar) {
             titleBar.addEventListener('mousedown', (e) => {
-                if(ventana.classList.contains('maximized')) return;
+                if(ventana.classList.contains('maximized') || ventana.classList.contains('window--static')) return;
+                if ((e.target as Element).closest('button')) return;
 
                 const offsetX = (e as MouseEvent).clientX - (ventana as HTMLElement).offsetLeft;
                 const offsetY = (e as MouseEvent).clientY - (ventana as HTMLElement).offsetTop;
@@ -77,5 +81,8 @@ const { title, isStatic = false, id } = Astro.props;
             });
         }
     });
+  }
+  initWindows();
+  document.addEventListener('astro:page-load', initWindows);
 
 </script>

@@ -5,6 +5,14 @@ import { Image } from 'astro:assets';
 import avatarImg from '../assets/gifs/SH43HVSNNR5LCLWDEF6OICFL57AKIQMN.gif';
 import computerImg from '../assets/gifs/4TVNIZNSYD44M7OOOJ7DPQDA5K2TB46S.gif';
 import LatestCommit from '../components/LatestCommit.astro';
+import Calendar from '../components/Calendar.astro';
+import Gameboy from '../assets/site/s-l1200.png';
+import marioWalk from '../assets/gifs/DKOVUOTX5YK675CEULVSMQA45GHR6XEI.gif';
+import LatestPics from '../components/LatestPics.astro';
+import win98Badge from '../assets/gifs/win98_891.gif';
+import n64Badge from '../assets/gifs/n64_com_now.gif';
+import digitalBadge from '../assets/gifs/thedigitalme.gif';
+import wiiBadge from '../assets/gifs/wii_button.gif';
 ---
 
 <Layout title="Midnight Commit">
@@ -46,6 +54,45 @@ import LatestCommit from '../components/LatestCommit.astro';
     <Window title="latest commit" id="win-latest">
       <LatestCommit />
     </Window>
+
+    <section class="gameboy-corner" aria-label="Mi rincón retro">
+      <div class="retro-panel">
+        <p class="retro-panel-label">BANK 01 · DAILY SAVE<br />RTC / CALENDAR MODULE</p>
+        <div class="retro-stickers" aria-hidden="true">
+          <img src={computerImg.src} alt="" class="retro-character" />
+          <img src={win98Badge.src} alt="" />
+        </div>
+        <Window title="calendar" id="win-calendar" isStatic>
+          <Calendar />
+        </Window>
+        <div class="retro-stickers" aria-hidden="true">
+          <img src={digitalBadge.src} alt="" />
+          <img src={n64Badge.src} alt="" />
+        </div>
+        <p class="retro-panel-note">0x0001 · one day, one little memory.</p>
+      </div>
+
+      <div class="gameboy">
+        <Image src={Gameboy} alt="Nintendo Game Boy" class="gameboy-shell" />
+        <div class="gameboy-screen">
+          <img src={marioWalk.src} alt="Mario caminando en la pantalla" class="gameboy-mario" />
+        </div>
+      </div>
+
+      <div class="retro-panel">
+        <p class="retro-panel-label">BANK 02 · MEMORY CARD<br />IMG / PHOTO ARCHIVE</p>
+        <Window title="latest pics" id="win-pics" isStatic>
+          <LatestPics />
+        </Window>
+        <div class="retro-stickers" aria-hidden="true">
+          <img src={avatarImg.src} alt="" class="retro-character" />
+          <img src={wiiBadge.src} alt="" />
+          <img src={n64Badge.src} alt="" />
+        </div>
+        <p class="retro-panel-note">0x0002 · a few pixels worth keeping.</p>
+      </div>
+    </section>
+
 
   </div>
 </Layout>
