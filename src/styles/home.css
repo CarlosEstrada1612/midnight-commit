@@ -3,10 +3,9 @@
 .home-windows {
     display: grid;
     /* Anchos: About | Latest Commit | My System. */
-    grid-template-columns: 1fr 670px 1fr;
-    gap: 16px;
+    grid-template-columns: 1fr 640px 1fr;
+    gap: 20px;
     /* Separación entre ventanas. */
-    align-items: stretch;
 }
 
 .home-windows > .window:not(.maximized):not(.minimized) {
@@ -45,15 +44,13 @@
 
 .latest-image {
     /* Cambia aquí el ancho de la imagen. */
-    width: 300px;
+    width: 320px;
     flex-shrink: 0;
 }
 
 .latest-image img {
     display: block;
     width: 100%;
-    height: auto;
-    border-radius: 0;
 }
 
 .latest-body {
@@ -94,6 +91,11 @@
     margin: 0;
     font-size: 0.85rem;
     opacity: 0.85;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    overflow: hidden;
 }
 
 .latest-readmore {
@@ -108,6 +110,9 @@
     gap: 25px;
     padding: 6px;
 }
+#win-latest .window-content {
+    padding-top: 22px;
+}
 
 /* Contenido de About y My System. */
 
@@ -115,7 +120,7 @@
     min-width: 0;
 }
 
-.about-window {
+.about-window, .system-window {
     display: flex;
     flex-direction: column;
     padding: 5px;
@@ -124,14 +129,11 @@
 
 .about-top {
     display: flex;
-    gap: 0px;
     align-items: flex-start;
 }
 
 .about-top img {
     width: min(160px, 45%);
-    height: auto;
-    image-rendering: pixelated;
     flex-shrink: 0;
 }
 
@@ -153,28 +155,19 @@
     text-decoration: underline;
 }
 
-.system-window {
-    display: flex;
-    flex-direction: column;
-    padding: 5px;
-    width: 100%;
-}
-
 .system-parts p {
-    margin: 0 0 10px 0;
+    margin: 0 0 20px 0;
     max-width: 250px;
 }
 
 .system-top {
     display: flex;
-    flex-direction: row;
     gap: 10px;
     align-items: flex-start;
 }
 
 .system-top img {
-    width: min(160px, 45%);
-    height: auto;
+    width: min(180px, 45%);
     flex-shrink: 0;
 }
 
@@ -184,8 +177,6 @@
     position: relative;
     left: 5px;
     /* derecha; negativo = izquierda */
-    top: 0px;
-    /* abajo; negativo = arriba */
     width: 420px;
     max-width: 100%;
     align-self: start;
@@ -196,7 +187,6 @@
     width: 166.6667%;
     max-width: none;
     margin-left: -32.38%;
-    height: auto;
     display: block;
 }
 
@@ -225,7 +215,6 @@
     height: 200px;
     max-width: 100%;
     object-fit: contain;
-    image-rendering: pixelated;
 }
 
 /* Fila inferior: cuadros de memoria y Game Boy. */
@@ -233,7 +222,6 @@
 .gameboy-corner {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 420px minmax(0, 1fr);
-    align-items: stretch;
     gap: 12px;
     padding: 16px 0;
 }
@@ -246,18 +234,26 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 24px;
-    padding: 24px clamp(16px, 2vw, 30px) 44px;
-    background-color: #403655;
+    gap: 0;
+    padding: 24px clamp(16px, 2vw, 30px) 30px;
     background-image: url('../assets/site/memory-background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     border: 4px outset var(--color-bg);
-    border-radius: 0;
     box-shadow: inset 0 0 0 5px #30283e, 3px 3px 0 #171122;
     color: #eee6d7;
 }
+
+.memory-character {
+    display: block;
+    align-self: center;
+    max-width: 100%;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+.memory-character--luigi { width: auto; height: 180px; }
+.memory-character--link { width: 220px; }
 
 .retro-panel::after {
     content: '';
@@ -299,17 +295,54 @@
 }
 
 .retro-panel .window--static:not(.maximized) {
-    position: relative;
-    inset: auto;
     margin-top: -16px;
     /* Sube las ventanas interiores. */
-    width: 100%;
     max-width: 360px;
     margin-inline: auto;
     flex-shrink: 0;
 }
 
-/*undefinedPantallas pequeñas: excepciones a las medidas de arriba.undefined*/
+#win-calendar:not(.maximized),
+#win-pics:not(.maximized) {
+    translate: 0 25px;
+}
+
+/* Ambas ventanas de los bancos comparten las mismas dimensiones. */
+.retro-panel .window--static:not(.maximized):not(.minimized):not(.hidden) {
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+}
+
+.retro-panel .window--static:not(.maximized):not(.minimized) > .window-titlebar {
+    flex-shrink: 0;
+}
+
+.retro-panel .window--static:not(.maximized):not(.minimized) > .window-content {
+    flex: 1;
+}
+
+#win-calendar:not(.minimized) > .window-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Las ventanas comparten una fila que crece con el contenido más alto. */
+@media (min-width: 601px) {
+    .gameboy-corner { grid-template-rows: auto auto auto auto; }
+    .gameboy-corner > .retro-panel {
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-row: 1 / span 4;
+    }
+    .gameboy-corner > .retro-panel:first-child { grid-column: 1; }
+    .gameboy-corner > .retro-panel:last-child { grid-column: 3; }
+    .gameboy-corner > .gameboy { grid-column: 2; grid-row: 1 / span 4; }
+    .memory-character { justify-self: center; }
+}
+
+/* Pantallas pequeñas: excepciones a las medidas de arriba. */
 
 @media (max-width: 1200px) {
     .home-windows {
@@ -326,11 +359,17 @@
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     }
 
-    .gameboy {
+    .gameboy-corner > .gameboy {
         grid-column: 1 / -1;
         grid-row: 1;
         justify-self: center;
     }
+}
+
+@media (min-width: 601px) and (max-width: 1050px) {
+    .gameboy-corner { grid-template-rows: auto auto auto auto auto; }
+    .gameboy-corner > .retro-panel { grid-row: 2 / span 4; }
+    .gameboy-corner > .retro-panel:last-child { grid-column: 2; }
 }
 
 @media (max-width: 600px) {
